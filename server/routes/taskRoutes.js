@@ -2,9 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const { getTasks, getTaskById, createTask, updateTask, deleteTask } = require('./../controllers/taskController');
+const { getTasks, getTaskById, createTask, updateTask, deleteTask, codificacion, tabla, datos } = require('./../controllers/taskController');
 const validateTask = require('../middlewares/validateTask');
-const { codificacion, tabla, datos } = require('../models/taskModel');
 
 // Devolver todas las tareas
 router.get('/', getTasks);
