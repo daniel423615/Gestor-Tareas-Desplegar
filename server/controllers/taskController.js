@@ -66,21 +66,23 @@ const deleteTask = async (req, res) => {
     }
 };
 
-const codificacion = async (req, res) => {
+const codificacion = async (req, res, next) => {
     try {
         const tasks = await Task.codificacion();
         res.json(tasks);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+  next();
 };
-const tabla = async (req, res) => {
+const tabla = async (req, res, next) => {
     try {
         const tasks = await Task.tabla();
         res.json(tasks);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+  next();
 };
 const datos = async (req, res) => {
     try {
@@ -89,6 +91,7 @@ const datos = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+  
 };
 
 module.exports = { getTasks, getTaskById, createTask, updateTask, deleteTask, codificacion, tabla, datos };
