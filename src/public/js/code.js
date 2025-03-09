@@ -113,7 +113,7 @@ const filterTasks = () => {
 
 // Mostrar las tareas
 const fetchTasks = () => {
-  fetch('http://localhost:3000/api/tasks')
+  fetch('./api/tasks')
     .then(response => response.json())
     .then(data => {
       allTasks = data; // Store all tasks
@@ -140,7 +140,7 @@ const addTask = (event) => {
   const task_date = document.getElementById('task-date').value;
   
   
-  fetch('http://localhost:3000/api/tasks', {
+  fetch('./api/tasks', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ task_name, task_description, task_state, task_date })
@@ -161,7 +161,7 @@ const addTask = (event) => {
 // Abrir el dialog para editar una tarea
 const openEditDialog = (taskId) => {
   currentEditingTaskId = taskId;
-  fetch(`http://localhost:3000/api/tasks/${taskId}`)
+  fetch(`./api/tasks/${taskId}`)
     .then(response => response.json())
     .then(task => {
       if (!task) {
@@ -196,7 +196,7 @@ const saveTask = () => {
     return;
   }
   
-  fetch(`http://localhost:3000/api/tasks/${currentEditingTaskId}`, {
+  fetch(`./api/tasks/${currentEditingTaskId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ task_name, task_description, task_state, task_date })
@@ -226,7 +226,7 @@ const deleteTask = (taskId) => {
     confirmButtonText: "Eliminar!"
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+      fetch(`./api/tasks/${taskId}`, {
         method: 'DELETE'
       })
       .then(() => {
